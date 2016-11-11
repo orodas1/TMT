@@ -6,9 +6,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-/**
- * Created by Hugo on 11/10/2016.
- */
+
+
+
 public class CreateNewUser implements ActionListener {
 
     private JTextField firstNameField;
@@ -25,15 +25,21 @@ public class CreateNewUser implements ActionListener {
         this.passWordField = password;
     }
 
+    /**
+     *
+     * @param e
+     * takes an ActionEvent e and creates or veridies an employee
+     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        String firstName = this.firstNameField.getText();
+        String firstName = this.firstNameField.getText();           //get the person's info
         String lastName = this.lastNameField.getText();
         Date dateHired = extractDate();
         String userName = this.userNameField.getText();
         String password = String.valueOf(this.passWordField.getPassword());
 
-        if(firstName.equals("") || lastName.equals("") || dateHired == null || userName.equals("") || password.equals(""))
+        if(firstName.equals("") || lastName.equals("") || dateHired == null || userName.equals("") || password.equals(""))  //check input
             JOptionPane.showMessageDialog(null, "Please enter all the required information");
         else{
             DB_Writer writer = new DB_Writer();
@@ -46,10 +52,17 @@ public class CreateNewUser implements ActionListener {
         }
     }
 
+    /**
+     *
+     * @return Date toRet
+     * check for the date hired
+     * returns it to method actionPerformed
+     */
+
     public Date extractDate(){
         Date toRet = null;
 
-        if(!this.dateHiredField.getText().equals("")){
+        if(!this.dateHiredField.getText().equals("")){              //if date hired is not null, get the dated hired
             String dateEntered = this.dateHiredField.getText();
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             try {
